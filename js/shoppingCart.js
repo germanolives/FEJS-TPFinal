@@ -142,7 +142,7 @@ function createProductsMenu(){
       const liSubMenu = document.createElement('li');
       ulSubMenu.appendChild(liSubMenu);
       const aLiSubMenu = document.createElement('a');
-      aLiSubMenu.setAttribute('href', `index.html#${producto.id}`);
+      aLiSubMenu.setAttribute('href', `index.html#${producto.id}@${categ}`);
       aLiSubMenu.innerText = `${capitalizeWord((producto.title.slice(0, 12).toLowerCase()))}`;
       liSubMenu.appendChild(aLiSubMenu);
     });
@@ -152,8 +152,6 @@ function createProductsMenu(){
 
 const objCategories = {};
 const listCategories = [];
-
-
 
 
 fetch('https://fakestoreapi.com/products')

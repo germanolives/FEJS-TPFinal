@@ -1,4 +1,3 @@
-
 function switchTituloBusqueda() {
     const h1 = document.getElementById('titulo');
     const search = document.getElementById('search');
@@ -155,6 +154,7 @@ function createProductsContent(categ){
 function createProductCard(divArtic, categ, producto){
   const cardProd = document.createElement('article');
   cardProd.classList.add(`card-${categ}`);
+  cardProd.setAttribute('id', `${producto.id}@${categ}`);
   divArtic.appendChild(cardProd);
   const imgContent = document.createElement('span');
   imgContent.classList.add('imgContent');
@@ -269,7 +269,7 @@ function createProductsMenu(){
       const liSubMenu = document.createElement('li');
       ulSubMenu.appendChild(liSubMenu);
       const aLiSubMenu = document.createElement('a');
-      aLiSubMenu.setAttribute('href', `#${producto.id}`);
+      aLiSubMenu.setAttribute('href', `#${producto.id}@${categ}`);
       aLiSubMenu.innerText = `${capitalizeWord((producto.title.slice(0, 12).toLowerCase()))}`;
       liSubMenu.appendChild(aLiSubMenu);
     });
@@ -322,7 +322,6 @@ addCart.addEventListener('submit', (event)=>{
     }
   }
 );
-
 showDescription.addEventListener('click', (event)=>{
   const showClick = event.target;
   const imgProduct = JSON.parse(sessionStorage.getItem('imgProduct')) || [];
@@ -349,7 +348,6 @@ showDescription.addEventListener('click', (event)=>{
     }
   }
 )
-
 
 
 fetch('https://fakestoreapi.com/products')
