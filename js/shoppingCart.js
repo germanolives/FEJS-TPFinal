@@ -273,7 +273,7 @@ function cartUpload(){
          contenedorCant.appendChild(botonCant);
          valorCompra.appendChild(precioCompra);
       }
-      h2Pedidos.innerHTML = `SHOPPING CART: <small>€</small>${sumCompra}`;
+      h2Pedidos.innerHTML = `SHOPPING CART: <small>€</small>${parseFloat(sumCompra.toFixed(2))}`;
       h2Pedidos.style.color = 'black';
       const eliminarProductoPedido = document.querySelector('.pedidos .div');
       eliminarProductoPedido.addEventListener('click', (event)=>{
