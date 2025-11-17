@@ -211,7 +211,7 @@ function cartUpload(){
          let h3Producto = document.createElement('h3');
          h3Producto.classList.add('h3Producto');
          h3Producto.setAttribute('id', listaPedidos[i].dateBuy);
-         h3Producto.innerText = listaPedidos[i].title.slice(0,12).toUpperCase();
+         h3Producto.innerText = listaPedidos[i].title.slice(0,12);
          itemPedido.appendChild(h3Producto);
          let imagenProducto = document.createElement('img');
          imagenProducto.setAttribute('src', listaPedidos[i].image);
