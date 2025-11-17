@@ -357,7 +357,7 @@ function cartUpload(){
    let h2Pedidos = document.createElement('h2');
    let pedido = document.createElement('div');
    pedidos.classList.add('pedidos');
-   pedidos.innerHTML = '<p>No hay compras en tu carrito</p>';
+   pedidos.innerHTML = '<p>There are no items in your cart</p>';
    h2Pedidos.innerHTML = 'SHOPPING CART: <small>€</small>0,00';
    h2Pedidos.style.color = 'brown';
    pedido.classList.add('div');
