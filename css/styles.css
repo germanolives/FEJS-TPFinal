@@ -1107,6 +1107,10 @@ body {
   position: relative;
 }
 
+.articuloCarrito img:hover{
+  transform: scale(1.25);
+}
+
 .h3Producto:hover{
   cursor: pointer;
 }
