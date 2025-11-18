@@ -289,6 +289,7 @@ addCart.addEventListener('submit', (event)=>{
    if(formClick.classList.contains('buyContent')){
       if(formClick.querySelector('.prodQty').value>0 && formClick.querySelector('.prodQty').value<1000){
          const fechaPedido = new Date().toISOString();
+         formClick.parentNode.querySelector('.imgContent').style.backgroundColor = '#ffff004d';
          for(categ in objCategories){
           objCategories[categ].forEach(item=>{
             if(item.id == formClick.getAttribute('id')){
@@ -373,8 +374,12 @@ fetch("https://fakestoreapi.com/products")
       objCategories[categ].forEach(producto=>{
         createProductCard(divArtic, categ, producto);
       })
-
     }
+    const buyList = JSON.parse(localStorage.getItem('cart')) || [];
+    buyList.forEach(item=>{
+      const remarkProd = document.getElementById(`${item.id}`).parentNode.querySelector('.imgContent');
+      remarkProd.classList.add('imgContentYellow');
+    });
   })
   .catch((error) => {
     console.error("Error en la comunicación con la API:", error);

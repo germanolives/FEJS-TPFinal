@@ -1125,6 +1125,16 @@ body {
   border-radius: 5px;
 }
 
+.imgContentYellow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: #ffff004d;
+  border-radius: 5px;
+}
+
 .imgContent img:hover{
   transform: scale(1.5);
 }
