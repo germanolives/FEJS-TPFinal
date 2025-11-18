@@ -297,7 +297,7 @@ addCart.addEventListener('submit', (event)=>{
                 description: item.description,
                 id: item.id,
                 image: item.image,
-                price: item.price,
+                price: parseFloat(item.price.toFixed(2)),
                 rating: {
                   rate: item.rating.rate,
                   count: item.rating.count,

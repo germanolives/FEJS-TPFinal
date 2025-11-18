@@ -334,7 +334,8 @@ function cartUpload(){
             for(let i=0; i<listaPedidos.length; i++){
                if(listaPedidos[i].dateBuy == idItem){
                   listaPedidos[i].qty = cantItem;
-                  listaPedidos[i].buy = listaPedidos[i].price * cantItem;
+                  // listaPedidos[i].buy = listaPedidos[i].price * cantItem;
+                  listaPedidos[i].buy = parseFloat((listaPedidos[i].price * cantItem).toFixed(2));
                }
             }
             localStorage.setItem('cart', JSON.stringify(listaPedidos));
