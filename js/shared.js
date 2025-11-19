@@ -89,9 +89,28 @@ function capitalizeWord(str) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    cartCounter();
-    cartUpload();
+    const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
+    if(listCategories.length==0){
+      fetch("https://fakestoreapi.com/products")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          createObjCat(data);
+          createMenu();
+          cartCounter();
+        })
+        .catch((error) => {
+          console.error("Error en la comunicación con la API:", error);
+        });
+    }
+  createMenu();
+  cartCounter();
 });
+
 document.getElementById('boton-tituloBusqueda').addEventListener('click', switchTituloBusqueda);
 document.getElementById('boton-claroOscuro').addEventListener('click', switchClaroOscuro);
 
@@ -102,6 +121,8 @@ if (localStorage.getItem('DarkOn') == 'true') {
    switchOscuro();
 }
 function createObjCat(data){
+  const objCategories = {};
+  const listCategories = [];
   data.forEach(producto => {
     if(!listCategories.includes(producto.category)){
       listCategories.push(producto.category);
@@ -110,10 +131,12 @@ function createObjCat(data){
     else{
       objCategories[firstWord(producto.category)].push(producto);
     }
+  localStorage.setItem('objCategories', JSON.stringify(objCategories));
+  localStorage.setItem('listCategories', JSON.stringify(listCategories));
   });
 
 }
-function createCategoriesMenu(){
+function createCategoriesMenu(listCategories){
   const ulMenu = document.querySelector('.dropdown-content');
   listCategories.forEach(item=>{
     const liMenu = document.createElement('li');
@@ -124,15 +147,16 @@ function createCategoriesMenu(){
     liMenu.appendChild(aLiMenu);
   });
 }
-function createProductsMenu(){
+function createProductsMenu(objCategories){
   const ulMenu = document.querySelector('.navlist');
   const liLoginMenu = document.querySelector('#liLoginMenu');
   for(const categ in objCategories){
     const liMenu = document.createElement('li');
+    // ulMenu.appendChild(liMenu);
     ulMenu.insertBefore(liMenu, liLoginMenu);
     const aLiMenu = document.createElement('a');
     aLiMenu.innerText = `${capitalizeWord(categ)}`;
-    aLiMenu.setAttribute('href', `index.html#${categ}`);
+    aLiMenu.setAttribute('href', `#${categ}`);
     liMenu.appendChild(aLiMenu);
     const ulSubMenu = document.createElement('ul');
     objCategories[categ].forEach(producto=>{
@@ -148,9 +172,12 @@ function createProductsMenu(){
     
   }
 }
-
-const objCategories = {};
-const listCategories = [];
+function createMenu(){
+  const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
+  createCategoriesMenu(listCategories);
+  const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
+  createProductsMenu(objCategories);
+}
 
 
 fetch('https://fakestoreapi.com/products')
@@ -167,8 +194,6 @@ fetch("https://fakestoreapi.com/products")
   })
   .then((data) => {
     createObjCat(data);
-    createCategoriesMenu();
-    createProductsMenu();
   })
   .catch((error) => {
     console.error("Error en la comunicación con la API:", error);

@@ -89,8 +89,28 @@ function capitalizeWord(str) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    cartCounter();
+    const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
+    if(listCategories.length==0){
+      fetch("https://fakestoreapi.com/products")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          createObjCat(data);
+          createMenu();
+          cartCounter();
+        })
+        .catch((error) => {
+          console.error("Error en la comunicación con la API:", error);
+        });
+    }
+  createMenu();
+  cartCounter();
 });
+
 document.getElementById('boton-tituloBusqueda').addEventListener('click', switchTituloBusqueda);
 document.getElementById('boton-claroOscuro').addEventListener('click', switchClaroOscuro);
 
@@ -101,6 +121,8 @@ if (localStorage.getItem('DarkOn') == 'true') {
    switchOscuro();
 }
 function createObjCat(data){
+  const objCategories = {};
+  const listCategories = [];
   data.forEach(producto => {
     if(!listCategories.includes(producto.category)){
       listCategories.push(producto.category);
@@ -109,6 +131,8 @@ function createObjCat(data){
     else{
       objCategories[firstWord(producto.category)].push(producto);
     }
+  localStorage.setItem('objCategories', JSON.stringify(objCategories));
+  localStorage.setItem('listCategories', JSON.stringify(listCategories));
   });
 
 }
@@ -240,7 +264,7 @@ function createProductCard(divArtic, categ, producto){
 
   
 }
-function createCategoriesMenu(){
+function createCategoriesMenu(listCategories){
   const ulMenu = document.querySelector('.dropdown-content');
   listCategories.forEach(item=>{
     const liMenu = document.createElement('li');
@@ -251,7 +275,7 @@ function createCategoriesMenu(){
     liMenu.appendChild(aLiMenu);
   });
 }
-function createProductsMenu(){
+function createProductsMenu(objCategories){
   const ulMenu = document.querySelector('.navlist');
   const liLoginMenu = document.querySelector('#liLoginMenu');
   for(const categ in objCategories){
@@ -276,14 +300,19 @@ function createProductsMenu(){
     
   }
 }
+function createMenu(){
+  const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
+  createCategoriesMenu(listCategories);
+  const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
+  createProductsMenu(objCategories);
+}
 
-const objCategories = {};
-const listCategories = [];
-const addCart = document.querySelector('.products');
-const showDescription = document.querySelector('.products');
+
+const clickProduct = document.querySelector('.products');
 
 
-addCart.addEventListener('submit', (event)=>{
+clickProduct.addEventListener('submit', (event)=>{
+  const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
    event.preventDefault();
    const formClick = event.target;
    if(formClick.classList.contains('buyContent')){
@@ -323,7 +352,7 @@ addCart.addEventListener('submit', (event)=>{
     }
   }
 );
-showDescription.addEventListener('click', (event)=>{
+clickProduct.addEventListener('click', (event)=>{
   const showClick = event.target;
   const imgProduct = JSON.parse(sessionStorage.getItem('imgProduct')) || [];
     if(showClick.classList.contains('product-title')){
@@ -365,8 +394,7 @@ fetch("https://fakestoreapi.com/products")
   })
   .then((data) => {
     createObjCat(data);
-    createCategoriesMenu();
-    createProductsMenu();
+    const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
     const divCategories = createCategoriesContent();
     for(const categ in objCategories){
       createCategoryCard(divCategories, categ);
