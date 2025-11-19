@@ -89,26 +89,28 @@ function capitalizeWord(str) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
-    if(listCategories.length==0){
-      fetch("https://fakestoreapi.com/products")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          createObjCat(data);
-          createMenu();
-          cartCounter();
-        })
-        .catch((error) => {
-          console.error("Error en la comunicación con la API:", error);
-        });
-    }
-  createMenu();
-  cartCounter();
+  const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
+  if(listCategories.length==0){
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        createObjCat(data);
+        createMenu();
+        cartCounter();
+      })
+      .catch((error) => {
+        console.error("Error en la comunicación con la API:", error);
+      });
+  }
+  else{
+    createMenu();
+    cartCounter();
+  }
 });
 
 document.getElementById('boton-tituloBusqueda').addEventListener('click', switchTituloBusqueda);

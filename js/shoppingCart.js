@@ -89,28 +89,30 @@ function capitalizeWord(str) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
-    if(listCategories.length==0){
-      fetch("https://fakestoreapi.com/products")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          createObjCat(data);
-          createMenu();
-          cartCounter();
-          cartUpload();
-        })
-        .catch((error) => {
-          console.error("Error en la comunicación con la API:", error);
-        });
-    }
-  createMenu();
-  cartCounter();
-  cartUpload();
+  const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
+  if(listCategories.length==0){
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        createObjCat(data);
+        createMenu();
+        cartCounter();
+        cartUpload();
+      })
+      .catch((error) => {
+        console.error("Error en la comunicación con la API:", error);
+      });
+  }
+  else{
+    createMenu();
+    cartCounter();
+    cartUpload();
+  }
 });
 
 document.getElementById('boton-tituloBusqueda').addEventListener('click', switchTituloBusqueda);
@@ -158,7 +160,7 @@ function createProductsMenu(objCategories){
     ulMenu.insertBefore(liMenu, liLoginMenu);
     const aLiMenu = document.createElement('a');
     aLiMenu.innerText = `${capitalizeWord(categ)}`;
-    aLiMenu.setAttribute('href', `#${categ}`);
+    aLiMenu.setAttribute('href', `index.html#${categ}`);
     liMenu.appendChild(aLiMenu);
     const ulSubMenu = document.createElement('ul');
     objCategories[categ].forEach(producto=>{
