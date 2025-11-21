@@ -311,7 +311,6 @@ function createMenu(){
 
 
 const clickProduct = document.querySelector('.products');
-
 clickProduct.addEventListener('submit', (event)=>{
   const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
   event.preventDefault();
@@ -351,9 +350,7 @@ clickProduct.addEventListener('submit', (event)=>{
     }
   }
 }
-);
-
-
+)
 clickProduct.addEventListener('click', (event)=>{
   const showClick = event.target;
   const imgProduct = JSON.parse(sessionStorage.getItem('imgProduct')) || [];
