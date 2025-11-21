@@ -1,5 +1,5 @@
 import* as sharedFunctions
-from './sharedFunctions.js'
+from './sharedFunctions.js';
 
 function createCategoriesContent(){
   const categories = document.querySelector('.categories');

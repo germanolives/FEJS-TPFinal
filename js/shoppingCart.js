@@ -1,5 +1,5 @@
 import* as sharedFunctions
-from './sharedFunctions.js'
+from './sharedFunctions.js';
 
 function cartUpload(){
    const listaPedidos = JSON.parse(localStorage.getItem('cart')) || [];

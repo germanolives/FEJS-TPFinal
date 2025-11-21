@@ -1,5 +1,5 @@
 import* as sharedFunctions
-from './sharedFunctions.js'
+from './sharedFunctions.js';
 
 function domContentLoaded(){
   document.addEventListener('DOMContentLoaded', function () {
