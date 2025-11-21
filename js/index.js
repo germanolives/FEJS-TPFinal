@@ -323,7 +323,6 @@ clickProduct.addEventListener('submit', (event)=>{
       for(const categ in objCategories){
         objCategories[categ].forEach(item=>{
           if(item.id == formClick.getAttribute('id')){
-            getOut = true;
             const objetProduct = {
               category: item.category,
               description: item.description,
