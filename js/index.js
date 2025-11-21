@@ -133,9 +133,9 @@ function createObjCat(data){
     else{
       objCategories[firstWord(producto.category)].push(producto);
     }
+  });
   localStorage.setItem('objCategories', JSON.stringify(objCategories));
   localStorage.setItem('listCategories', JSON.stringify(listCategories));
-  });
 
 }
 function createCategoriesContent(){
@@ -321,7 +321,7 @@ clickProduct.addEventListener('submit', (event)=>{
       if(formClick.querySelector('.prodQty').value>0 && formClick.querySelector('.prodQty').value<1000){
          const fechaPedido = new Date().toISOString();
          formClick.parentNode.querySelector('.imgContent').style.backgroundColor = '#ffff004d';
-         for(categ in objCategories){
+         for(const categ in objCategories){
           objCategories[categ].forEach(item=>{
             if(item.id == formClick.getAttribute('id')){
               const objetProduct = {
