@@ -74,6 +74,19 @@ function switchOscuro() {
    boton.classList.add('activo');
    localStorage.setItem('DarkOn', 'true');
 }
+function searchTitle(){
+  document.getElementById('boton-tituloBusqueda').addEventListener('click', switchTituloBusqueda);
+  if (localStorage.getItem('searchOn') == 'true') {
+     switchBusqueda();
+  }
+
+}
+function darkLight(){
+  document.getElementById('boton-claroOscuro').addEventListener('click', switchClaroOscuro);
+  if (localStorage.getItem('DarkOn') == 'true') {
+    switchOscuro();
+}
+}
 function cartCounter() {
    const buyList = JSON.parse(localStorage.getItem('cart')) || [];
    const numCart = document.querySelector('.counterCarrito sub');
@@ -86,41 +99,6 @@ function capitalizeWord(str) {
   return str.replace(/\w\S*/g, function(txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
-  if(listCategories.length==0){
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        createObjCat(data);
-        createMenu();
-        cartCounter();
-      })
-      .catch((error) => {
-        console.error("Error en la comunicación con la API:", error);
-      });
-  }
-  else{
-    createMenu();
-    cartCounter();
-  }
-});
-
-document.getElementById('boton-tituloBusqueda').addEventListener('click', switchTituloBusqueda);
-document.getElementById('boton-claroOscuro').addEventListener('click', switchClaroOscuro);
-
-if (localStorage.getItem('searchOn') == 'true') {
-   switchBusqueda();
-}
-if (localStorage.getItem('DarkOn') == 'true') {
-   switchOscuro();
 }
 function createObjCat(data){
   const objCategories = {};
@@ -137,6 +115,48 @@ function createObjCat(data){
   localStorage.setItem('objCategories', JSON.stringify(objCategories));
   localStorage.setItem('listCategories', JSON.stringify(listCategories));
 
+}
+function createCategoriesMenu(listCategories){
+  const ulMenu = document.querySelector('.dropdown-content');
+  listCategories.forEach(item=>{
+    const liMenu = document.createElement('li');
+    ulMenu.appendChild(liMenu);
+    const aLiMenu = document.createElement('a');
+    aLiMenu.innerText = `${capitalizeWord(firstWord(item))}`;
+    aLiMenu.setAttribute('href', `#${firstWord(item)}`);
+    liMenu.appendChild(aLiMenu);
+  });
+}
+function createProductsMenu(objCategories){
+  const ulMenu = document.querySelector('.navlist');
+  const liLoginMenu = document.querySelector('#liLoginMenu');
+  for(const categ in objCategories){
+    const liMenu = document.createElement('li');
+    // ulMenu.appendChild(liMenu);
+    ulMenu.insertBefore(liMenu, liLoginMenu);
+    const aLiMenu = document.createElement('a');
+    aLiMenu.innerText = `${capitalizeWord(categ)}`;
+    aLiMenu.setAttribute('href', `#${categ}`);
+    liMenu.appendChild(aLiMenu);
+    const ulSubMenu = document.createElement('ul');
+    objCategories[categ].forEach(producto=>{
+      ulSubMenu.classList.add('dropdown-content');
+      liMenu.appendChild(ulSubMenu);
+      const liSubMenu = document.createElement('li');
+      ulSubMenu.appendChild(liSubMenu);
+      const aLiSubMenu = document.createElement('a');
+      aLiSubMenu.setAttribute('href', `#${producto.id}@${categ}`);
+      aLiSubMenu.innerText = `${capitalizeWord((producto.title.slice(0, 12).toLowerCase()))}`;
+      liSubMenu.appendChild(aLiSubMenu);
+    });
+    
+  }
+}
+function createMenu(){
+  const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
+  createCategoriesMenu(listCategories);
+  const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
+  createProductsMenu(objCategories);
 }
 function createCategoriesContent(){
   const categories = document.querySelector('.categories');
@@ -266,51 +286,71 @@ function createProductCard(divArtic, categ, producto){
 
   
 }
-function createCategoriesMenu(listCategories){
-  const ulMenu = document.querySelector('.dropdown-content');
-  listCategories.forEach(item=>{
-    const liMenu = document.createElement('li');
-    ulMenu.appendChild(liMenu);
-    const aLiMenu = document.createElement('a');
-    aLiMenu.innerText = `${capitalizeWord(firstWord(item))}`;
-    aLiMenu.setAttribute('href', `#${firstWord(item)}`);
-    liMenu.appendChild(aLiMenu);
+function domContentLoaded(){
+  document.addEventListener('DOMContentLoaded', function () {
+    const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
+    if(listCategories.length==0){
+      fetch("https://fakestoreapi.com/products")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          createObjCat(data);
+          createMenu();
+          cartCounter();
+        })
+        .catch((error) => {
+          console.error("Error en la comunicación con la API:", error);
+        });
+    }
+    else{
+      createMenu();
+      cartCounter();
+    }
   });
-}
-function createProductsMenu(objCategories){
-  const ulMenu = document.querySelector('.navlist');
-  const liLoginMenu = document.querySelector('#liLoginMenu');
-  for(const categ in objCategories){
-    const liMenu = document.createElement('li');
-    // ulMenu.appendChild(liMenu);
-    ulMenu.insertBefore(liMenu, liLoginMenu);
-    const aLiMenu = document.createElement('a');
-    aLiMenu.innerText = `${capitalizeWord(categ)}`;
-    aLiMenu.setAttribute('href', `#${categ}`);
-    liMenu.appendChild(aLiMenu);
-    const ulSubMenu = document.createElement('ul');
-    objCategories[categ].forEach(producto=>{
-      ulSubMenu.classList.add('dropdown-content');
-      liMenu.appendChild(ulSubMenu);
-      const liSubMenu = document.createElement('li');
-      ulSubMenu.appendChild(liSubMenu);
-      const aLiSubMenu = document.createElement('a');
-      aLiSubMenu.setAttribute('href', `#${producto.id}@${categ}`);
-      aLiSubMenu.innerText = `${capitalizeWord((producto.title.slice(0, 12).toLowerCase()))}`;
-      liSubMenu.appendChild(aLiSubMenu);
+} 
+function apiFetchIndex(){
+  fetch("https://fakestoreapi.com/products")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      createObjCat(data);
+      const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
+      const divCategories = createCategoriesContent();
+      for(const categ in objCategories){
+        createCategoryCard(divCategories, categ);
+        const divArtic = createProductsContent(categ);
+        objCategories[categ].forEach(producto=>{
+          createProductCard(divArtic, categ, producto);
+        })
+      }
+      const buyList = JSON.parse(localStorage.getItem('cart')) || [];
+      buyList.forEach(item=>{
+        const remarkProd = document.getElementById(`${item.id}`).parentNode.querySelector('.imgContent');
+        remarkProd.classList.add('imgContentYellow');
+      });
+    })
+    .catch((error) => {
+      console.error("Error en la comunicación con la API:", error);
     });
-    
-  }
-}
-function createMenu(){
-  const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
-  createCategoriesMenu(listCategories);
-  const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
-  createProductsMenu(objCategories);
-}
+} 
+
+
+domContentLoaded();
+searchTitle();
+darkLight();
+apiFetchIndex();
 
 
 const clickProduct = document.querySelector('.products');
+
 clickProduct.addEventListener('submit', (event)=>{
   const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
   event.preventDefault();
@@ -377,139 +417,3 @@ clickProduct.addEventListener('click', (event)=>{
     }
   }
 )
-
-
-fetch("https://fakestoreapi.com/products")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    createObjCat(data);
-    const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
-    const divCategories = createCategoriesContent();
-    for(const categ in objCategories){
-      createCategoryCard(divCategories, categ);
-      const divArtic = createProductsContent(categ);
-      objCategories[categ].forEach(producto=>{
-        createProductCard(divArtic, categ, producto);
-      })
-    }
-    const buyList = JSON.parse(localStorage.getItem('cart')) || [];
-    buyList.forEach(item=>{
-      const remarkProd = document.getElementById(`${item.id}`).parentNode.querySelector('.imgContent');
-      remarkProd.classList.add('imgContentYellow');
-    });
-  })
-  .catch((error) => {
-    console.error("Error en la comunicación con la API:", error);
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// addCart.addEventListener('submit', (event)=>{
-//    event.preventDefault();
-//    const formClick = event.target;
-//    if(formClick.classList.contains('buyContent')){
-//       if(formClick.querySelector('.prodQty').value>0 && formClick.querySelector('.prodQty').value<1000){
-//         const fechaPedido = new Date().toISOString();
-//         const objetProduct = {
-//           id: formClick.getAttribute('id'),
-//           qty: parseInt(formClick.querySelector('.prodQty').value),
-//           price: parseFloat(formClick.querySelector('.pPrice').innerText.slice(1)),
-//           buy: parseFloat(formClick.querySelector('.pPrice').innerText.slice(1)) * parseInt(formClick.querySelector('.prodQty').value),
-//           imgPath: formClick.parentNode.querySelector('img').getAttribute('src'),
-//           imgHeight: formClick.parentNode.querySelector('img').getAttribute('height'),
-//           cardColor: formClick.parentNode.querySelector('form').name,
-//           dateBuy: fechaPedido,
-//           title: formClick.parentNode.querySelector('img').getAttribute('alt'),
-//         }
-//         console.log(objetProduct);
-//         const buyList = (JSON.parse(localStorage.getItem('cart')) || []);
-//         buyList.push(objetProduct);
-//         localStorage.setItem('cart', JSON.stringify(buyList));
-//         contarCarrito();
-//       }
-//    }
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-

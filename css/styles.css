@@ -513,7 +513,7 @@ li .acaEstoy {
   margin: 1rem;
   height: 350px;
   width: 240px;
-  background-color: #713333;
+  background-color: #e4664a;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, cursor 0.3s ease;
@@ -568,7 +568,7 @@ li .acaEstoy {
   margin: 1rem;
   height: 350px;
   width: 240px;
-  background-color: #e4664a;
+  background-color: #713333;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, cursor 0.3s ease;
