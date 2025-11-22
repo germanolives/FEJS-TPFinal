@@ -1,6 +1,16 @@
 import* as sharedFunctions
 from './sharedFunctions.js';
 
+function getQueryString(){
+   const arrayDataQs = []
+   const queryString = location.search;
+   const objQueryString = new URLSearchParams(queryString);
+   const idProd = objQueryString.get('idProd');
+   arrayDataQs.push(idProd);
+   const prodQty = objQueryString.get('prodQty');
+   arrayDataQs.push(prodQty);
+   return arrayDataQs;
+}
 function cartUpload(){
    const listaPedidos = JSON.parse(localStorage.getItem('cart')) || [];
    const mainCart = document.querySelector('main');
@@ -35,6 +45,9 @@ function cartUpload(){
          h3Producto.setAttribute('id', listaPedidos[i].dateBuy);
          h3Producto.innerText = listaPedidos[i].title.slice(0,14);
          itemPedido.appendChild(h3Producto);
+         let anchorImg = document.createElement('a');
+         anchorImg.setAttribute('href', `details.html?id=${listaPedidos[i].id}`);
+         anchorImg.setAttribute('title', 'See details');
          let imagenProducto = document.createElement('img');
          imagenProducto.setAttribute('src', listaPedidos[i].image);
          imagenProducto.setAttribute('height', listaPedidos[i].imgHeight/2);
@@ -50,7 +63,8 @@ function cartUpload(){
             imagenProducto.style.display = 'none';
             contenedorDescripcionItem.style.display = 'flex';
          }
-         itemPedido.appendChild(imagenProducto);
+         itemPedido.appendChild(anchorImg);
+         anchorImg.appendChild(imagenProducto);
          itemPedido.appendChild(contenedorDescripcionItem);
          let descripcionItem = document.createElement('p');
          descripcionItem.classList.add('descripcionItem');
@@ -101,7 +115,7 @@ function cartUpload(){
          if(itemClick.tagName == 'I'){
             const listaPedidos = JSON.parse(localStorage.getItem('cart')) || [];
             for(let i=0; i<listaPedidos.length; i++){
-               if(listaPedidos[i].dateBuy == itemClick.parentNode.parentNode.querySelector('h3').id){
+               if(listaPedidos[i].dateBuy == itemClick.parentNode.parentNode.querySelector('h3')?.id){
                   listaPedidos.splice(i, 1);
                }
          }
@@ -218,6 +232,11 @@ function apiFetch(){
       return response.json();
     })
     .then((data) => {
+      const resGetQs = getQueryString();
+      if(resGetQs[0] != null && resGetQs[1] != null){
+         console.log(resGetQs);
+         objCart(resGetQs);
+      }
       sharedFunctions.createObjCat(data);
     })
     .catch((error) => {
@@ -233,13 +252,78 @@ sharedFunctions.darkLight();
 
 
 
+function objCart(resGetQs){
+   fetch(`https://fakestoreapi.com/products/${resGetQs[0]}`)
+   .then((response)=>{
+      if(!response.ok){
+         throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+   })
+   .then((data)=>{
+      let imgHeight;
+      let cardColor;
+      const fechaPedido = new Date().toISOString();
+      if(sharedFunctions.firstWord(data.category) == 'men'){
+         cardColor = '#7a8fe1';
+         imgHeight = '190';
+      }
+      else if(sharedFunctions.firstWord(data.category) == 'jewelery'){
+         cardColor = '#e4664a';
+         imgHeight = '90';
+      }
+      else if(sharedFunctions.firstWord(data.category) == 'electronics'){
+         cardColor = '#713333';
+         imgHeight = '120';
+      }
+      else{
+         cardColor = '#f63488';
+         imgHeight = '190';
+      }
+      const objetProduct = {
+         category: data.category,
+         description: data.description,
+         id: data.id,
+         image: data.image,
+         price: parseFloat(data.price.toFixed(2)),
+         rating: {
+         rate: data.rating.rate,
+         count: data.rating.count,
+         },
+         qty: parseInt(resGetQs[1]),
+         buy: parseFloat(data.price) * parseInt(resGetQs[1]),
+         imgHeight: imgHeight,
+         cardColor: cardColor,
+         dateBuy: fechaPedido,
+         title: data.title,
+         mostrarDescripcion: false,
+      }
+      console.log(objetProduct);
+      console.log(objetProduct.id);
+      const buyList = (JSON.parse(localStorage.getItem('cart')) || []);
+      let newItem = true;
+      buyList.forEach(item => {
+         if(item.id == objetProduct.id){
+            let newQty = item.qty + objetProduct.qty;
+            let newBuy = newQty * item.price;
+            item.qty = newQty;
+            item.buy = newBuy;
+            newItem = false;
+         }
+      });
+      if(newItem){
+         buyList.push(objetProduct);
+      }
+      localStorage.setItem('cart', JSON.stringify(buyList));
+      sharedFunctions.cartCounter();
+      cartUpload();
+   })
+   .catch((error)=>{
+      console.error("Error en la comunicación con la API:", error);
+   })
 
 
-
-
-
-
-
+}
 
 
 

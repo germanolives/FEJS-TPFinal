@@ -47,7 +47,11 @@ function createProductCard(divArtic, categ, producto){
   const imgContent = document.createElement('span');
   imgContent.classList.add('imgContent');
   cardProd.appendChild(imgContent);
+  const anchorImg = document.createElement('a');
+  anchorImg.setAttribute('href', `details.html?id=${producto.id}`);
+  anchorImg.setAttribute('title', 'See details');
   const imgProd = document.createElement('img');
+  imgProd.classList.add('imgProd');
   imgProd.setAttribute('src', `${producto.image}`)
   imgProd.setAttribute('alt', `${producto.title}`)
   const descContent = document.createElement('div');
@@ -60,8 +64,8 @@ function createProductCard(divArtic, categ, producto){
       imgContent.style.display = 'none';
     }
   })
-
-  imgContent.appendChild(imgProd);
+  imgContent.appendChild(anchorImg);
+  anchorImg.appendChild(imgProd);
   cardProd.appendChild(descContent);
   const descProd = document.createElement('p');
   descProd.classList.add('descripcionItem');
@@ -257,8 +261,6 @@ clickProduct.addEventListener('click', (event)=>{
     }
   }
 )
-
-
 
 
 
