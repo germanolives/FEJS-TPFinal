@@ -44,9 +44,12 @@ function apiFetchDetails(){
             const divSolapa = document.createElement('div');
             divSolapa.classList.add('solapaDetails');
             const h2Product = document.createElement('h2');
-            h2Product.innerText = `${sharedFunctions.firstWord(data.category).toUpperCase()}`;
+            const aH2Product = document.createElement('a');
+            aH2Product.setAttribute('href', `index.html#${sharedFunctions.firstWord(data.category)}`);
+            aH2Product.innerText = `${sharedFunctions.firstWord(data.category).toUpperCase()}`;
             detailsContent.appendChild(divSolapa);
             divSolapa.appendChild(h2Product);
+            h2Product.appendChild(aH2Product);
             const divContent = document.createElement('div');
             divContent.classList.add('divDetails');
             detailsContent.appendChild(divContent);
