@@ -1251,7 +1251,7 @@ body {
 
 .buyContent{
   display: grid;
-  grid-template-columns: 140px 40px;
+  grid-template-columns: 138px 42px;
   grid-template-rows: auto 30px;
   gap: 3px;
 }
@@ -1322,7 +1322,7 @@ body {
   border-radius: 5px 0px 0px 5px;
   font-size: 15px;
   padding: 2px;
-  width: 50px;
+  width: 70px;
 }
 
 .cantProd::-webkit-inner-spin-button {

@@ -240,7 +240,7 @@ clickProduct.addEventListener('submit', (event)=>{
             }
             localStorage.setItem('cart', JSON.stringify(buyList));
             sharedFunctions.cartCounter();
-            cartUpload();
+            // cartUpload();
 
 
             // const buyList = (JSON.parse(localStorage.getItem('cart')) || []);
