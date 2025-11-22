@@ -1987,7 +1987,7 @@ h1 {
 }
 
 .divDetails img{
-  height: 200px;
+  width: 250px;
 }
 
 }
@@ -2081,8 +2081,23 @@ audio {width: 190px;}
 }
 
 .pedidos {
-  margin: 6em 1em 6em;
+  margin:
+   6em 1em 6em;
 }
+
+.detailsContent {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(222, 184, 135, 0.65);
+  margin: 6em 1em 6em;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 10px 10px 10px;
+  border: 1px solid hsl(0, 0%, 50%);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
 
 }
 
