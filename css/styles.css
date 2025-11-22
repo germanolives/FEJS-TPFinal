@@ -1526,6 +1526,16 @@ box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
   width: 100px;
 }
 
+.divDetails img{
+  height: 250px;
+}
+.detailText{
+  width: 200px;
+}
+.h3Content{
+  font-size: medium;
+}
+
 }
 
 @media (max-width: 915px) {
@@ -1675,6 +1685,17 @@ box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
   width: 95%;
   
 }
+
+.divDetails {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  /* border: none; */
+}
+
 }
 
 @media (max-width: 700px) {
@@ -1718,6 +1739,8 @@ header {
 .contact {
   width: 290px;
 }
+
+
 
 }
 
@@ -1949,6 +1972,9 @@ h1 {
   font-size: 0.58rem;
 }
 
+.divDetails img{
+  height: 200px;
+}
 
 }
 
