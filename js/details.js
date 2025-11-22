@@ -1,19 +1,6 @@
 import* as sharedFunctions
 from './sharedFunctions.js';
 
-function createCategoriesContent(){
-  const categories = document.querySelector('.categories');
-  const h2Categories = document.createElement('h2');
-  const aCategories = document.createElement('a');
-  aCategories.innerText = 'CATEGORIES';
-  aCategories.setAttribute('href', '#categories');
-  h2Categories.setAttribute('id', 'categories');
-  const divCategories = document.createElement('div');
-  categories.appendChild(h2Categories);
-  h2Categories.appendChild(aCategories);
-  categories.appendChild(divCategories);
-  return divCategories;
-}
 function domContentLoaded(){
   document.addEventListener('DOMContentLoaded', function () {
     const listCategories = JSON.parse(localStorage.getItem('listCategories')) || [];
@@ -104,6 +91,10 @@ function apiFetchDetails(){
             };
             buyContent.setAttribute('action', `shoppingCart.html`);
             buyContent.setAttribute('method', 'get');
+            buyContent.style.marginTop = '2.5rem';
+            buyContent.style.border = '1px solid grey';
+            buyContent.style.borderRadius = '5px';
+            buyContent.style.width = '184px';
             detailText.appendChild(buyContent);
             const pPrice = document.createElement('p');
             pPrice.classList.add('pPrice');
@@ -130,11 +121,6 @@ function apiFetchDetails(){
             buyButton.setAttribute('type', 'submit');
             buyButton.innerText = 'Add to Cart';
             buyContent.appendChild(buyButton);
-           
-
-
-
-
         })
         .catch((error) => {
         console.error("Error en la comunicación con la API:", error);
