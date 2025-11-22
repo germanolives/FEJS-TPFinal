@@ -172,7 +172,7 @@ function cartUpload(){
          let precioCompra = document.createElement('h2');
          precioCompra.style.color = 'white';
          sumCompra = sumCompra + listaPedidos[i].buy;
-         precioCompra.innerHTML = `<small>€</small>${listaPedidos[i].buy}`;
+         precioCompra.innerHTML = `<small>€</small>${listaPedidos[i].buy.toFixed(2)}`;
          valorCompra.appendChild(labelCantProd);
          valorCompra.appendChild(contenedorCant);
          contenedorCant.appendChild(cantProd);
