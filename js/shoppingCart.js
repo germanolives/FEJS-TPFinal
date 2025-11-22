@@ -1,6 +1,78 @@
 import* as sharedFunctions
 from './sharedFunctions.js';
 
+function objCart(resGetQs){
+   fetch(`https://fakestoreapi.com/products/${resGetQs[0]}`)
+   .then((response)=>{
+      if(!response.ok){
+         throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+   })
+   .then((data)=>{
+      let imgHeight;
+      let cardColor;
+      const fechaPedido = new Date().toISOString();
+      if(sharedFunctions.firstWord(data.category) == 'men'){
+         cardColor = '#7a8fe1';
+         imgHeight = '190';
+      }
+      else if(sharedFunctions.firstWord(data.category) == 'jewelery'){
+         cardColor = '#e4664a';
+         imgHeight = '90';
+      }
+      else if(sharedFunctions.firstWord(data.category) == 'electronics'){
+         cardColor = '#713333';
+         imgHeight = '120';
+      }
+      else{
+         cardColor = '#f63488';
+         imgHeight = '190';
+      }
+      const objetProduct = {
+         category: data.category,
+         description: data.description,
+         id: data.id,
+         image: data.image,
+         price: parseFloat(data.price.toFixed(2)),
+         rating: {
+         rate: data.rating.rate,
+         count: data.rating.count,
+         },
+         qty: parseInt(resGetQs[1]),
+         buy: parseFloat(data.price) * parseInt(resGetQs[1]),
+         imgHeight: imgHeight,
+         cardColor: cardColor,
+         dateBuy: fechaPedido,
+         title: data.title,
+         mostrarDescripcion: false,
+      }
+      console.log(objetProduct);
+      console.log(objetProduct.id);
+      const buyList = (JSON.parse(localStorage.getItem('cart')) || []);
+      let newItem = true;
+      buyList.forEach(item => {
+         if(item.id == objetProduct.id){
+            let newQty = item.qty + objetProduct.qty;
+            let newBuy = newQty * item.price;
+            item.qty = newQty;
+            item.buy = newBuy;
+            newItem = false;
+         }
+      });
+      if(newItem){
+         buyList.push(objetProduct);
+      }
+      localStorage.setItem('cart', JSON.stringify(buyList));
+      sharedFunctions.cartCounter();
+      cartUpload();
+   })
+   .catch((error)=>{
+      console.error("Error en la comunicación con la API:", error);
+   })
+
+
+}
 function getQueryString(){
    const arrayDataQs = []
    const queryString = location.search;
@@ -107,6 +179,7 @@ function cartUpload(){
          contenedorCant.appendChild(botonCant);
          valorCompra.appendChild(precioCompra);
       }
+
       h2Pedidos.innerHTML = `SHOPPING CART: <small>€</small>${parseFloat(sumCompra.toFixed(2))}`;
       h2Pedidos.style.color = 'black';
       const eliminarProductoPedido = document.querySelector('.pedidos .div');
@@ -252,78 +325,7 @@ sharedFunctions.darkLight();
 
 
 
-function objCart(resGetQs){
-   fetch(`https://fakestoreapi.com/products/${resGetQs[0]}`)
-   .then((response)=>{
-      if(!response.ok){
-         throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-   })
-   .then((data)=>{
-      let imgHeight;
-      let cardColor;
-      const fechaPedido = new Date().toISOString();
-      if(sharedFunctions.firstWord(data.category) == 'men'){
-         cardColor = '#7a8fe1';
-         imgHeight = '190';
-      }
-      else if(sharedFunctions.firstWord(data.category) == 'jewelery'){
-         cardColor = '#e4664a';
-         imgHeight = '90';
-      }
-      else if(sharedFunctions.firstWord(data.category) == 'electronics'){
-         cardColor = '#713333';
-         imgHeight = '120';
-      }
-      else{
-         cardColor = '#f63488';
-         imgHeight = '190';
-      }
-      const objetProduct = {
-         category: data.category,
-         description: data.description,
-         id: data.id,
-         image: data.image,
-         price: parseFloat(data.price.toFixed(2)),
-         rating: {
-         rate: data.rating.rate,
-         count: data.rating.count,
-         },
-         qty: parseInt(resGetQs[1]),
-         buy: parseFloat(data.price) * parseInt(resGetQs[1]),
-         imgHeight: imgHeight,
-         cardColor: cardColor,
-         dateBuy: fechaPedido,
-         title: data.title,
-         mostrarDescripcion: false,
-      }
-      console.log(objetProduct);
-      console.log(objetProduct.id);
-      const buyList = (JSON.parse(localStorage.getItem('cart')) || []);
-      let newItem = true;
-      buyList.forEach(item => {
-         if(item.id == objetProduct.id){
-            let newQty = item.qty + objetProduct.qty;
-            let newBuy = newQty * item.price;
-            item.qty = newQty;
-            item.buy = newBuy;
-            newItem = false;
-         }
-      });
-      if(newItem){
-         buyList.push(objetProduct);
-      }
-      localStorage.setItem('cart', JSON.stringify(buyList));
-      sharedFunctions.cartCounter();
-      cartUpload();
-   })
-   .catch((error)=>{
-      console.error("Error en la comunicación con la API:", error);
-   })
 
-
-}
 
 
 

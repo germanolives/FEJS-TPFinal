@@ -225,9 +225,28 @@ clickProduct.addEventListener('submit', (event)=>{
               mostrarDescripcion: false,
             };
             const buyList = (JSON.parse(localStorage.getItem('cart')) || []);
-            buyList.push(objetProduct);
+            let newItem = true;
+            buyList.forEach(element => {
+                if(element.id == objetProduct.id){
+                  let newQty = element.qty + objetProduct.qty;
+                  let newBuy = newQty * element.price;
+                  element.qty = newQty;
+                  element.buy = newBuy;
+                  newItem = false;
+                }
+            });
+            if(newItem){
+                buyList.push(objetProduct);
+            }
             localStorage.setItem('cart', JSON.stringify(buyList));
             sharedFunctions.cartCounter();
+            cartUpload();
+
+
+            // const buyList = (JSON.parse(localStorage.getItem('cart')) || []);
+            // buyList.push(objetProduct);
+            // localStorage.setItem('cart', JSON.stringify(buyList));
+            // sharedFunctions.cartCounter();
           }
         });
       }
