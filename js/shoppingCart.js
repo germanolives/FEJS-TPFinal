@@ -106,7 +106,7 @@ function cartUpload(){
       solapaPedidos.appendChild(trashCarrito);
       pedidos.appendChild(pedido);
       for(let i=0; i<listaPedidos.length; i++){
-         const fechaPedido = new Date().toISOString();
+         let fechaPedido = new Date().toISOString();
          let itemPedido = document.createElement('article');
          itemPedido.classList.add('articuloCarrito');
          itemPedido.style.color = 'aqua';
@@ -153,7 +153,7 @@ function cartUpload(){
          let contenedorCant = document.createElement('div');
          contenedorCant.classList.add('contenedorCant');
          let labelCantProd = document.createElement('label');
-         labelCantProd.setAttribute('for', fechaPedido);
+         labelCantProd.setAttribute('for', `${listaPedidos[i].id}@${fechaPedido}&${i}"` );
          labelCantProd.innerText = 'Qty';
          labelCantProd.style.fontSize = '12px';
          let cantProd = document.createElement('input');
@@ -162,7 +162,7 @@ function cartUpload(){
          cantProd.setAttribute('min', '1');
          cantProd.setAttribute('max', '999');
          cantProd.setAttribute('name', 'cantidadProd');
-         cantProd.setAttribute('id', fechaPedido);
+         cantProd.setAttribute('id', `${listaPedidos[i].id}@${fechaPedido}&${i}"`);
          cantProd.style.backgroundColor = listaPedidos[i].cardColor;
          cantProd.style.color = 'white';
          cantProd.setAttribute('value', listaPedidos[i].qty);

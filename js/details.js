@@ -40,6 +40,7 @@ function apiFetchDetails(){
         return response.json();
         })
         .then((data) => {
+            let fechaPedido = new Date().toISOString();
             const detailsContent = document.querySelector('.detailsContent');
             const divSolapa = document.createElement('div');
             divSolapa.classList.add('solapaDetails');
