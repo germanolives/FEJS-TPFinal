@@ -154,7 +154,7 @@ function cartUpload(){
          contenedorCant.classList.add('contenedorCant');
          let labelCantProd = document.createElement('label');
          labelCantProd.setAttribute('for', `${listaPedidos[i].id}@${fechaPedido}&${i}"` );
-         labelCantProd.innerText = 'Qty';
+         labelCantProd.innerText = 'Quantity';
          labelCantProd.style.fontSize = '12px';
          let cantProd = document.createElement('input');
          cantProd.classList.add('cantProd');
