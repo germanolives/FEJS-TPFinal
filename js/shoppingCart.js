@@ -179,7 +179,6 @@ function cartUpload(){
          contenedorCant.appendChild(botonCant);
          valorCompra.appendChild(precioCompra);
       }
-
       h2Pedidos.innerHTML = `SHOPPING CART: <small>€</small>${parseFloat(sumCompra.toFixed(2))}`;
       h2Pedidos.style.color = 'black';
       const eliminarProductoPedido = document.querySelector('.pedidos .div');
@@ -188,7 +187,7 @@ function cartUpload(){
          if(itemClick.tagName == 'I'){
             const listaPedidos = JSON.parse(localStorage.getItem('cart')) || [];
             for(let i=0; i<listaPedidos.length; i++){
-               if(listaPedidos[i].dateBuy == itemClick.parentNode.parentNode.querySelector('h3')?.id){
+               if(listaPedidos[i].dateBuy == itemClick.parentNode.parentNode.querySelector('h3').id){
                   listaPedidos.splice(i, 1);
                }
          }

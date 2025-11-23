@@ -185,13 +185,33 @@ function apiFetchIndex(){
     });
 } 
 
+// const hashh = window.location.hash;
+// console.log(hashh);
+
+
+// window.addEventListener('load', function() {
+//   if (window.location.hash) {
+//     const element = document.querySelector(window.location.hash);
+//       if (element) {
+//         // Un pequeño retraso asegura que el renderizado terminó
+//         setTimeout(() => {
+//           element.scrollIntoView({
+//             behavior: 'smooth'});
+//         }, 100); 
+//       }
+//   }
+// });
+
 
 domContentLoaded();
 apiFetchIndex();
 sharedFunctions.searchTitle();
 sharedFunctions.darkLight();
-
-
+// if(hashh){
+//   console.log('HAY HASH');
+//   document.querySelector('main').style.backgroundColor = 'orange';
+//   document.location.hash = '#footer';
+// }
 
 const clickProduct = document.querySelector('.products');
 
