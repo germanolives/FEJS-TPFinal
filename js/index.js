@@ -179,6 +179,17 @@ function apiFetchIndex(){
         const remarkProd = document.getElementById(`${item.id}`).parentNode.querySelector('.imgContent');
         remarkProd.classList.add('imgContentYellow');
       });
+
+      if (window.location.hash) {
+        const element = document.querySelector(window.location.hash);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        }
+      }
+
+
     })
     .catch((error) => {
       console.error("Error en la comunicación con la API:", error);
