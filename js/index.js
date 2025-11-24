@@ -182,7 +182,6 @@ function apiFetchIndex(){
 
       if (window.location.hash) {
         const element = document.getElementById(window.location.hash.slice(1));
-        console.log(element);
         if (element) {
           setTimeout(() => {
             element.scrollIntoView({
