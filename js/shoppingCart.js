@@ -66,6 +66,7 @@ function objCart(resGetQs){
       localStorage.setItem('cart', JSON.stringify(buyList));
       sharedFunctions.cartCounter();
       cartUpload();
+      window.history.replaceState({}, document.title, window.location.pathname);
    })
    .catch((error)=>{
       console.error("Error en la comunicación con la API:", error);
