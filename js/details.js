@@ -83,15 +83,23 @@ function apiFetchDetails(){
             buyContent.classList.add('buyContentDetails');
             if(sharedFunctions.firstWord(data.category) == 'men'){
                 buyContent.setAttribute('name', '#7a8fe1');
+                detailsContent.style.backgroundColor = 'aqua';
+                divSolapa.style.backgroundColor = 'aqua';
             }
             else if(sharedFunctions.firstWord(data.category) == 'electronics'){
                 buyContent.setAttribute('name', '#713333');
+                detailsContent.style.backgroundColor = 'burlywood';
+                divSolapa.style.backgroundColor = 'burlywood';
             }
             else if(sharedFunctions.firstWord(data.category) == 'jewelery'){
                 buyContent.setAttribute('name', '#e4664a');
+                detailsContent.style.backgroundColor = 'bisque';
+                divSolapa.style.backgroundColor = 'bisque';
             }
             else{
                 buyContent.setAttribute('name', '#f63488');
+                detailsContent.style.backgroundColor = 'pink';
+                divSolapa.style.backgroundColor = 'pink';
             };
             buyContent.setAttribute('action', `shoppingCart.html`);
             buyContent.setAttribute('method', 'get');
