@@ -80,7 +80,7 @@ function apiFetchDetails(){
             rateCountContent.appendChild(spanCount);
             const buyContent = document.createElement('form');
             buyContent.setAttribute('id', `${data.id}`);
-            buyContent.classList.add('buyContent');
+            buyContent.classList.add('buyContentDetails');
             if(sharedFunctions.firstWord(data.category) == 'men'){
                 buyContent.setAttribute('name', '#7a8fe1');
             }
@@ -95,15 +95,15 @@ function apiFetchDetails(){
             };
             buyContent.setAttribute('action', `shoppingCart.html`);
             buyContent.setAttribute('method', 'get');
-            buyContent.style.marginTop = '2.5rem';
-            buyContent.style.border = '1px solid grey';
-            buyContent.style.borderRadius = '5px';
-            buyContent.style.width = '184px';
             detailText.appendChild(buyContent);
             const pPrice = document.createElement('p');
-            pPrice.classList.add('pPrice');
+            pPrice.classList.add('pPriceDetails');
             pPrice.innerText = `€${data.price.toFixed(2)}`;
             buyContent.appendChild(pPrice);
+            const labelQty = document.createElement('label');
+            labelQty.classList.add('labelQty');
+            labelQty.setAttribute('for', `${data.id}@${sharedFunctions.firstWord(data.category)}`);
+            labelQty.innerText = 'Quantity';
             const prodQty = document.createElement('input');
             const priceValue = document.createElement('input');
             priceValue.classList.add('idProduct');
@@ -111,17 +111,18 @@ function apiFetchDetails(){
             priceValue.setAttribute('name', 'idProd');
             priceValue.setAttribute('id', `${data.id}`);
             priceValue.setAttribute('value', `${data.id}`);
-            prodQty.classList.add('prodQty');
+            prodQty.classList.add('prodQtyDetails');
             prodQty.setAttribute('type', 'number');
             prodQty.setAttribute('min', '1');
             prodQty.setAttribute('max', '999');
             prodQty.setAttribute('name', 'prodQty');
             prodQty.setAttribute('value', '1');
-            prodQty.setAttribute('placeholder', 'Qty');
+            prodQty.setAttribute('id', `${data.id}@${sharedFunctions.firstWord(data.category)}`);
             buyContent.appendChild(priceValue);
+            buyContent.appendChild(labelQty);
             buyContent.appendChild(prodQty);
             const buyButton = document.createElement('button');
-            buyButton.classList.add('buyButton');
+            buyButton.classList.add('buyButtonDetails');
             buyButton.setAttribute('type', 'submit');
             buyButton.innerText = 'Add to Cart';
             buyContent.appendChild(buyButton);
