@@ -116,7 +116,7 @@ function apiFetchDetails(){
             prodQty.setAttribute('min', '1');
             prodQty.setAttribute('max', '999');
             prodQty.setAttribute('name', 'prodQty');
-            prodQty.setAttribute('value', '');
+            prodQty.setAttribute('value', '1');
             prodQty.setAttribute('placeholder', 'Qty');
             buyContent.appendChild(priceValue);
             buyContent.appendChild(prodQty);
