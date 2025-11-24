@@ -1305,7 +1305,8 @@ body {
   margin-top: 2.5rem;
   border: 1px solid grey;
   border-radius: 5px;
-  width: 204px;
+  width: 208px;
+  padding: 2px;
 }
 
 
