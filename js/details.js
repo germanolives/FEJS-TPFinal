@@ -136,3 +136,4 @@ domContentLoaded();
 apiFetchDetails();
 sharedFunctions.searchTitle();
 sharedFunctions.darkLight();
+sharedFunctions.smoothScrollPage();

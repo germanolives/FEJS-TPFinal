@@ -321,6 +321,7 @@ domContentLoadedShoppingCart();
 apiFetch();
 sharedFunctions.searchTitle();
 sharedFunctions.darkLight();
+sharedFunctions.smoothScrollPage();
 
 
 

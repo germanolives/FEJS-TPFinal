@@ -158,3 +158,23 @@ export function createMenu(){
   const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
   createProductsMenu(objCategories);
 }
+export function smoothScrollPage(){
+  document.querySelector('.foot').addEventListener("click", (event)=>{
+    event.preventDefault();
+    const target = document.getElementById('footer');
+    if (target) {
+      target.scrollIntoView({
+      behavior: "smooth",
+      });
+    }
+  });
+  document.querySelector('.home').addEventListener("click", (event)=>{
+    event.preventDefault();
+    const target = document.getElementById('header');
+    if (target) {
+      target.scrollIntoView({
+      behavior: "smooth",
+      });
+    }
+  });
+}

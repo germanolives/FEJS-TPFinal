@@ -75,7 +75,7 @@ header {
   grid-template-columns: 90px 1fr auto;
   grid-template-rows: 60px 30px;
   gap: 0.3rem;
-  margin-top: 0.25rem;
+  padding-top: 0.25rem;
   margin-right: 1.5rem;
   margin-left: 1.5rem;
 }
