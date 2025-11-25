@@ -1168,7 +1168,7 @@ body {
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  margin: 15px;
+  margin: 16.2px;
   padding: 5px;
   width: 200px;
   height: 220px;
@@ -1221,10 +1221,19 @@ body {
 
 .cartDescContent{
   display: flex;
+  flex-direction: column;
   border-radius: 5px;
   width: 207px;
   height: 207px;
-   
+}
+
+.cartDescContentYellow{
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 207px;
+  height: 207px;
+  background-color: #ffff004d;
 }
 
 
@@ -1232,7 +1241,7 @@ body {
   font-size: 10px;
   text-align: center;
   padding: 2px;
-  height: 162px;
+  height: 172px;
   overflow: auto;
   border: 1px solid grey;
   border-radius: 5px;
@@ -1244,6 +1253,7 @@ body {
   align-items: center;
   gap: 3px;
   color: yellow;
+  border: 1px solid grey;
   border-radius: 5px;
   background-color: rgba(128, 128, 128, 0.5);;
   height: 35px;
@@ -2062,6 +2072,7 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+
 
 
 

@@ -189,7 +189,9 @@ function apiFetchIndex(){
       const buyList = JSON.parse(localStorage.getItem('cart')) || [];
       buyList.forEach(item=>{
         const remarkProd = document.getElementById(`${item.id}`).parentNode.querySelector('.imgContent');
+        const remarkDesc = document.getElementById(`${item.id}`).parentNode.querySelector('.cartDescContent');
         remarkProd.classList.add('imgContentYellow');
+        remarkDesc.classList.add('cartDescContentYellow');
       });
 
       if (window.location.hash) {
@@ -246,6 +248,7 @@ function addToCartFromIndex(){
     if(formClick.querySelector('.prodQtyDetails').value>0 && formClick.querySelector('.prodQtyDetails').value<1000){
       const fechaPedido = new Date().toISOString();
       formClick.parentNode.querySelector('.imgContent').style.backgroundColor = '#ffff004d';
+      formClick.parentNode.querySelector('.cartDescContent').style.backgroundColor = '#ffff004d';
       for(const categ in objCategories){
         objCategories[categ].forEach(item=>{
           if(item.id == formClick.getAttribute('id')){
