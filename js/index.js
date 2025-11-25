@@ -1,5 +1,4 @@
-import* as sharedFunctions
-from './sharedFunctions.js';
+import* as sharedFunctions from './sharedFunctions.js';
 
 function createCategoriesContent(){
   const categories = document.querySelector('.categories');
@@ -301,10 +300,3 @@ addToCart();
 sharedFunctions.searchTitle();
 sharedFunctions.darkLight();
 sharedFunctions.smoothScrollPage();
-
-
-
-
-
-
-
