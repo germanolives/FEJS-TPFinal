@@ -1063,8 +1063,8 @@ body {
   flex-direction: column;
   background-color: rgba(222, 184, 135, 0.65);
   margin: 6em 3em 6em;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   border-radius: 0px 10px 10px 10px;
   border: 1px solid hsl(0, 0%, 50%);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -1074,8 +1074,8 @@ body {
 .pedidos .div {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   /* border: none; */
 }
 
@@ -2051,6 +2051,16 @@ h1 {
 
 .divDetails img{
   width: 250px;
+}
+
+.pedidos {
+  justify-content: center;
+  align-items: center;
+}
+
+.pedidos .div {
+  justify-content: center;
+  align-items: center;
 }
 
 
