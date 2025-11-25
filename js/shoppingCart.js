@@ -257,7 +257,8 @@ function cartUpload(){
    let h2Pedidos = document.createElement('h2');
    let pedido = document.createElement('div');
    pedidos.classList.add('pedidos');
-   pedidos.innerHTML = '<p>There are no items in your cart</p>';
+   pedidos.innerHTML = '<p>There are currently no products in your cart. We invite you to browse our selection.</p><p> For your convenience, we accept numerous payment methods (credit cards, PayPal, etc.) and guarantee an efficient, global shipping process to ensure your order reaches any destination.</p>';
+   pedidos.style.padding = '1.5rem';
    h2Pedidos.innerHTML = 'SHOPPING CART: <small>€</small>0,00';
    h2Pedidos.style.color = 'brown';
    pedido.classList.add('div');

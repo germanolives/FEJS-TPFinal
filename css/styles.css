@@ -2053,6 +2053,8 @@ h1 {
   width: 250px;
 }
 
+
+
 }
 
 @media (max-width: 500px) {
@@ -2137,7 +2139,7 @@ h1 {
 audio {width: 190px;}
 
 .solapaPedidos {
-  width: 150px;
+  width: 200px;
   top: -49.5px;
   left: -0.5px;
   font-size: 0.75rem;
