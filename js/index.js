@@ -91,11 +91,11 @@ function createProductCard(divArtic, categ, producto){
   }
   const h3Prod = document.createElement('h3');
   h3Prod.classList.add('product-title');
-  h3Prod.innerText = producto.title;
+  h3Prod.innerText = producto.title.slice(0,34);
   cardProd.appendChild(h3Prod);
   const buyContent = document.createElement('form');
   buyContent.setAttribute('id', `${producto.id}`);
-  buyContent.classList.add('buyContent');
+  buyContent.classList.add('buyContentDetails');
   if(categ == 'men'){
     buyContent.setAttribute('name', '#7a8fe1');
   }
@@ -108,23 +108,36 @@ function createProductCard(divArtic, categ, producto){
   else{
     buyContent.setAttribute('name', '#f63488');
   };
-  buyContent.setAttribute('action', '#');
+  // buyContent.setAttribute('action', '#');
+  buyContent.setAttribute('action', 'shoppingCart.html');
+  buyContent.setAttribute('method', 'get');
   cardProd.appendChild(buyContent);
   const pPrice = document.createElement('p');
-  pPrice.classList.add('pPrice');
+  pPrice.classList.add('pPriceDetails');
   pPrice.innerText = `€${producto.price}`;
   buyContent.appendChild(pPrice);
+  const labelQty = document.createElement('label');
+  labelQty.classList.add('labelQty');
+  labelQty.setAttribute('for', `${producto.id}@${categ}&${producto.price}`);
+  labelQty.innerText = 'Quantity';
   const prodQty = document.createElement('input');
-  prodQty.classList.add('prodQty');
+  const priceValue = document.createElement('input');
+  priceValue.classList.add('idProduct');
+  priceValue.setAttribute('type', 'hidden');
+  priceValue.setAttribute('name', 'idProd');
+  priceValue.setAttribute('value', `${producto.id}`);
+  prodQty.classList.add('prodQtyDetails');
   prodQty.setAttribute('type', 'number');
   prodQty.setAttribute('min', '1');
   prodQty.setAttribute('max', '999');
   prodQty.setAttribute('name', 'prodQty');
-  prodQty.setAttribute('value', '');
-  prodQty.setAttribute('placeholder', 'Qty');
+  prodQty.setAttribute('value', '1');
+  prodQty.setAttribute('id', `${producto.id}@${categ}&${producto.price}`);
+  buyContent.appendChild(priceValue);
+  buyContent.appendChild(labelQty);
   buyContent.appendChild(prodQty);
   const buyButton = document.createElement('button');
-  buyButton.classList.add('buyButton');
+  buyButton.classList.add('buyButtonDetails');
   buyButton.setAttribute('type', 'submit');
   buyButton.innerText = 'Add to Cart';
   buyContent.appendChild(buyButton);
@@ -230,8 +243,8 @@ function addToCart(){
   const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
   event.preventDefault();
   const formClick = event.target;
-  if(formClick.classList.contains('buyContent')){
-    if(formClick.querySelector('.prodQty').value>0 && formClick.querySelector('.prodQty').value<1000){
+  if(formClick.classList.contains('buyContentDetails')){
+    if(formClick.querySelector('.prodQtyDetails').value>0 && formClick.querySelector('.prodQtyDetails').value<1000){
       const fechaPedido = new Date().toISOString();
       formClick.parentNode.querySelector('.imgContent').style.backgroundColor = '#ffff004d';
       for(const categ in objCategories){
@@ -247,8 +260,8 @@ function addToCart(){
               rate: item.rating.rate,
               count: item.rating.count,
               },
-              qty: parseInt(formClick.querySelector('.prodQty').value),
-              buy: parseFloat(formClick.querySelector('.pPrice').innerText.slice(1)) * parseInt(formClick.querySelector('.prodQty').value),
+              qty: parseInt(formClick.querySelector('.prodQtyDetails').value),
+              buy: parseFloat(formClick.querySelector('.pPriceDetails').innerText.slice(1)) * parseInt(formClick.querySelector('.prodQtyDetails').value),
               imgHeight: formClick.parentNode.querySelector('img').getAttribute('height'),
               cardColor: formClick.parentNode.querySelector('form').name,
               dateBuy: fechaPedido,
