@@ -237,7 +237,7 @@ function showHideDescription(){
     }
   )
 }
-function addToCart(){
+function addToCartFromIndex(){
   document.querySelector('.products').addEventListener('submit', (event)=>{
   const objCategories = JSON.parse(localStorage.getItem('objCategories')) || [];
   event.preventDefault();
@@ -296,7 +296,7 @@ function addToCart(){
 domContentLoaded();
 apiFetchIndex();
 showHideDescription();
-addToCart();
+addToCartFromIndex();
 sharedFunctions.searchTitle();
 sharedFunctions.darkLight();
 sharedFunctions.smoothScrollPage();
