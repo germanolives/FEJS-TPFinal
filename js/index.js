@@ -294,12 +294,53 @@ function addToCartFromIndex(){
 }
 )
 }
+function goToItemsBanner(){
+  document.querySelector('.bannerList').addEventListener('click', (event)=>{
+    const btClick = event.target;
+    const padre = document.querySelector('.bannersContent');
+    const list = Array.from(padre.children);
+    if (btClick.tagName == 'BUTTON'){
+      console.log(btClick.id.slice(2));
+      for(let i=0; i<list.length;i++){
+        console.log(i);
+        if(parseInt(btClick.id.slice(2)) == i){
+          list[i].style.zIndex = '1';
+        }
+        else{
+          list[i].style.zIndex = '0';
+        }
+      }
+    }
+  });
+}
+function girarBanners(delay){
+  const padre = document.querySelector('.bannersContent');
+  const list = Array.from(padre.children);
+  let count = 0;
+  for(let i=list.length-2; i>=-1;i--){
+    count += delay; 
+    setTimeout(()=>{
+      list[i].style.zIndex = list.length-i;
+    },count)
+  }
+  for(let i=0; i<list.length;i++){
+    setTimeout(()=>{
+      list[i].style.zIndex = '0';
+    },count)
+  }
+}
 
 
 domContentLoaded();
 apiFetchIndex();
 showHideDescription();
 addToCartFromIndex();
+goToItemsBanner();
+girarBanners(3000);
 sharedFunctions.searchTitle();
 sharedFunctions.darkLight();
 sharedFunctions.smoothScrollPage();
+
+
+
+
