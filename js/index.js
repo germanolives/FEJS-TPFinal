@@ -300,12 +300,8 @@ function goToItemsBanner(){
     const padre = document.querySelector('.bannersContent');
     const list = Array.from(padre.children);
     const indic = Array.from(document.querySelectorAll('li button'));
-    indic[3].style.backgroundColor = '#ffff004d';
-    indic[3].style.color = '#ffff004d';
     if (btClick.tagName == 'BUTTON'){
       console.log(btClick.id);
-      // btClick.style.backgroundColor = '#ffff004d';
-      // btClick.style.color = '#ffff004d';
       for(let i=0; i<list.length;i++){
         
         if(parseInt(btClick.id.slice(2)) == i){
