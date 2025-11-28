@@ -222,6 +222,7 @@ header {
   align-items: center;
   justify-content: space-evenly;
   flex-grow: 1;
+  z-index: 5;
 }
 
 .navlist a {

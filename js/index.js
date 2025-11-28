@@ -299,15 +299,25 @@ function goToItemsBanner(){
     const btClick = event.target;
     const padre = document.querySelector('.bannersContent');
     const list = Array.from(padre.children);
+    const indic = Array.from(document.querySelectorAll('li button'));
+    indic[3].style.backgroundColor = '#ffff004d';
+    indic[3].style.color = '#ffff004d';
     if (btClick.tagName == 'BUTTON'){
-      console.log(btClick.id.slice(2));
+      console.log(btClick.id);
+      // btClick.style.backgroundColor = '#ffff004d';
+      // btClick.style.color = '#ffff004d';
       for(let i=0; i<list.length;i++){
-        console.log(i);
+        
         if(parseInt(btClick.id.slice(2)) == i){
+          console.log(indic[i].id);
           list[i].style.zIndex = '1';
+          indic[i].style.backgroundColor = '#ffff004d';
+          indic[i].style.color = '#ffff004d';
         }
         else{
           list[i].style.zIndex = '0';
+          indic[i].style.backgroundColor = 'rgba(128, 128, 128, 0.5)';
+          indic[i].style.color = 'rgba(128, 128, 128, 0.5)';
         }
       }
     }
@@ -316,19 +326,28 @@ function goToItemsBanner(){
 function girarBanners(delay){
   const padre = document.querySelector('.bannersContent');
   const list = Array.from(padre.children);
+  const indic = Array.from(document.querySelectorAll('li button'));
+  indic[3].style.backgroundColor = '#ffff004d';
+  indic[3].style.color = '#ffff004d';
   let count = 0;
   for(let i=list.length-2; i>=-1;i--){
     count += delay; 
     setTimeout(()=>{
       list[i].style.zIndex = list.length-i;
+      indic[i].style.backgroundColor = '#ffff004d';
+      indic[i].style.color = '#ffff004d';
+
     },count)
   }
   for(let i=0; i<list.length;i++){
     setTimeout(()=>{
       list[i].style.zIndex = '0';
+      indic[i].style.backgroundColor = 'rgba(128, 128, 128, 0.5)';
+      indic[i].style.color = 'rgba(128, 128, 128, 0.5)';
     },count)
   }
 }
+
 
 
 domContentLoaded();
