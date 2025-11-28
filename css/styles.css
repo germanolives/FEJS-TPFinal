@@ -1981,12 +1981,12 @@ h1 {
   font-size: x-large;
 }
 
-.categorias {
+.categories {
   border-radius: 10px;
   margin: 3em 1em 6em;
 }
 
-.categorias h2 {
+.categories h2 {
   width: 150px;
   top: -33.5px;
   left: auto;
@@ -1998,7 +1998,7 @@ h1 {
   margin: 0.5em;
 }
 
-.aceites {
+.men {
   border-radius: 10px;
   margin: 3em 2.5em 6em;
 }
@@ -2009,18 +2009,29 @@ h1 {
   margin: 0.5em;
 }
 
-.aceites h2 {
+.men h2 {
   width: 140px;
   top: -33.5px;
   left: auto;
 }
 
-.frutosSecos {
+.women {
   border-radius: 10px;
   margin: 3em 2.5em 6em;
 }
 
-.frutosSecos h2 {
+.women h2 {
+  width: 140px;
+  top: -33.5px;
+  left: auto;
+}
+
+.jewelery {
+  border-radius: 10px;
+  margin: 3em 2.5em 6em;
+}
+
+.jewelery h2 {
   width: 140px;
   top: -33.5px;
   left: auto;
@@ -2041,13 +2052,13 @@ h1 {
   margin: 0.5em;
 }
 
-.semillas {
+.electronics {
   border-radius: 10px;
   margin: 3em 2.5em 6em;
 }
 
-.semillas h2 {
-  width: 140px;
+.electronics h2 {
+  width: 160px;
   top: -33.5px;
   left: auto;
 }
