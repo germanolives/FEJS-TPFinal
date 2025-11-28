@@ -2118,8 +2118,17 @@ h1 {
   align-items: center;
 }
 
+.bannersContent{
+  margin: 2rem 0rem;
+}
 
+ .bannerList{
+  margin-top: 25%;
+ }
 
+.categories {
+  margin-top: 25%;
+}
 
 }
 
