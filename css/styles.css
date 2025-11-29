@@ -85,7 +85,7 @@ header {
   border-radius: 5px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   border: 1px solid grey;
-  background-image: url(../img/logo.jpg);
+  background-image: url(../img/logoHeader/logo.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: center ;
@@ -93,7 +93,7 @@ header {
 }
 
 .logoDark {
-  background-image: url(../img/logoDark.jpg);
+  background-image: url(../img/logoHeader/logoDark.jpg);
   box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
 }
 
@@ -186,7 +186,7 @@ header {
   color: rgba(165, 42, 42, 0);
   font-weight: bold;
   background-color: hsl(33, 100%, 95%);
-  background-image: url(../img/TTP.jpg);
+  background-image: url(../img/logoHeader/TTP.jpg);
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -444,16 +444,16 @@ li .acaEstoy {
 }
 
 .cardCategory:nth-child(1) {
-  background-image: url(../img/categorias/men.jpg);
+  background-image: url(../img/categories/men.jpg);
 }
 .cardCategory:nth-child(2) {
-  background-image: url(../img/categorias/jewellery.jpg);
+  background-image: url(../img/categories/jewellery.jpg);
 }
 .cardCategory:nth-child(3) {
-  background-image: url(../img/categorias/electronics.jpg);
+  background-image: url(../img/categories/electronics.jpg);
 }
 .cardCategory:nth-child(4) {
-  background-image: url(../img/categorias/women.jpg);
+  background-image: url(../img/categories/women.jpg);
 }
 .cardCategory:hover {
   transform: scale(1.04);
@@ -1046,7 +1046,7 @@ body {
   text-align: left;
   padding: 1em;
   gap: 0.75em;
-  background-image: url(../img/fondo.jpg);
+  background-image: url(../img/aboutUs/fondo.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1065,7 +1065,7 @@ body {
   text-align: left;
   padding: 1em;
   gap: 0.75em;
-  background-image: url(../img/fondoBlur.jpg);
+  background-image: url(../img/aboutUs/fondoBlur.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   height: 350px;
@@ -1121,6 +1121,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
+ 
   /* border: none; */
 }
 
@@ -1133,6 +1134,14 @@ body {
   background-color: rgba(222, 184, 135, 0.65);
   border-radius: 10px 10px 0px 0px;
   border: 1px solid hsl(0, 0%, 50%);
+}
+
+.pedidosLang{
+  font-style: italic;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: rgba(245, 245, 220, 0.5);
 }
 
 .detailsContent {
