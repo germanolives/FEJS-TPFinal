@@ -1057,6 +1057,11 @@ body {
   transition: transform 0.3s ease, cursor 0.3s ease;
 }
 
+
+.flagHide{
+  display: none;
+}
+
 .cardTextNosotros:hover {
   display: flex;
   flex-direction: column;
@@ -1075,6 +1080,10 @@ body {
   transition: transform 0.3s ease, cursor 0.3s ease;
   transform: scale(1.01);
   overflow: auto; 
+}
+
+.cardTextNosotros:hover .flagHide{
+  display: inline;
 }
 
 
