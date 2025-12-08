@@ -319,7 +319,7 @@ function goToItemsBanner(){
     }
   });
 }
-function girarBanners(delay){
+function spinBanners(delay){
   const padre = document.querySelector('.bannersContent');
   const list = Array.from(padre.children);
   const indic = Array.from(document.querySelectorAll('li button'));
@@ -351,7 +351,7 @@ apiFetchIndex();
 showHideDescription();
 addToCartFromIndex();
 goToItemsBanner();
-girarBanners(3000);
+spinBanners(3000);
 sharedFunctions.searchTitle();
 sharedFunctions.darkLight();
 sharedFunctions.smoothScrollPage();
