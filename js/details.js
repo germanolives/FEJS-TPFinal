@@ -261,9 +261,6 @@ sharedFunctions.smoothScrollPage();
 
 
 
-
-
-
 // function apiFetchDetails(){
 //     const queryString = location.search;
 //     const objQueryString = new URLSearchParams(queryString);
