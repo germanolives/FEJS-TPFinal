@@ -85,7 +85,7 @@ header {
   border-radius: 5px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   border: 1px solid grey;
-  background-image: url(../img/logoHeader/logo.jpg);
+  background-image: url(../img/logoHeader/logo.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: center ;
@@ -93,7 +93,7 @@ header {
 }
 
 .logoDark {
-  background-image: url(../img/logoHeader/logoDark.jpg);
+  background-image: url(../img/logoHeader/logoDark.webp);
   box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
 }
 
@@ -186,7 +186,7 @@ header {
   color: rgba(165, 42, 42, 0);
   font-weight: bold;
   background-color: hsl(33, 100%, 95%);
-  background-image: url(../img/logoHeader/TTP.jpg);
+  background-image: url(../img/logoHeader/TTP.webp);
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -444,16 +444,16 @@ li .acaEstoy {
 }
 
 .cardCategory:nth-child(1) {
-  background-image: url(../img/categories/men.jpg);
+  background-image: url(../img/categories/men.webp);
 }
 .cardCategory:nth-child(2) {
-  background-image: url(../img/categories/jewellery.jpg);
+  background-image: url(../img/categories/jewellery.webp);
 }
 .cardCategory:nth-child(3) {
-  background-image: url(../img/categories/electronics.jpg);
+  background-image: url(../img/categories/electronics.webp);
 }
 .cardCategory:nth-child(4) {
-  background-image: url(../img/categories/women.jpg);
+  background-image: url(../img/categories/women.webp);
 }
 .cardCategory:hover {
   transform: scale(1.04);
@@ -1046,7 +1046,7 @@ body {
   text-align: left;
   padding: 1em;
   gap: 0.75em;
-  background-image: url(../img/aboutUs/fondo.jpg);
+  background-image: url(../img/aboutUs/fondo.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1070,7 +1070,7 @@ body {
   text-align: left;
   padding: 1em;
   gap: 0.75em;
-  background-image: url(../img/aboutUs/fondoBlur.jpg);
+  background-image: url(../img/aboutUs/fondoBlur.webp);
   background-repeat: no-repeat;
   background-size: cover;
   height: 350px;
@@ -1970,7 +1970,7 @@ h1 {
   font-size: 1rem;
   color: brown;
   background-size: cover;
-  background-image: url(../img/TTPNeutro.jpg);
+  background-image: url(../img/TTPNeutro.webp);
   background-position: 12px;
 }
 
