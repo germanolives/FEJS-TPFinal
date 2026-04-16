@@ -37,7 +37,7 @@ NIX_CC='/nix/store/kilyfvfmh9x9rlaj47ph1916lbc1pnsr-gcc-wrapper-14.3.0'
 export NIX_CC
 NIX_CC_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu='1'
 export NIX_CC_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu
-NIX_CFLAGS_COMPILE=' -frandom-seed=q6wzk0ldqg -isystem /nix/store/bm5n6l9kb86ihlf40fm5kldwri6hzphg-python3-3.12.13/include -isystem /nix/store/bm5n6l9kb86ihlf40fm5kldwri6hzphg-python3-3.12.13/include'
+NIX_CFLAGS_COMPILE=' -frandom-seed=y6m4209fgz -isystem /nix/store/bm5n6l9kb86ihlf40fm5kldwri6hzphg-python3-3.12.13/include -isystem /nix/store/bm5n6l9kb86ihlf40fm5kldwri6hzphg-python3-3.12.13/include'
 export NIX_CFLAGS_COMPILE
 NIX_ENFORCE_NO_NATIVE='1'
 export NIX_ENFORCE_NO_NATIVE
@@ -187,9 +187,7 @@ export propagatedNativeBuildInputs
 declare -a propagatedTargetDepFiles=('propagated-target-target-deps' )
 shell='/nix/store/wv8bpzriikv65xnd1vciqpq7rnr8h2q2-bash-5.3p3/bin/bash'
 export shell
-shellHook='export LANG=C.UTF-8
-export LC_ALL=C.UTF-8
-echo "🚀 Minimalist Web Environment Activated"
+shellHook='echo "🚀 Minimalist Web Environment Activated"
 '
 export shellHook
 stdenv='/nix/store/sgz04vy3x5cvg9kqq9vlm93qi1n2pb6k-stdenv-linux'
