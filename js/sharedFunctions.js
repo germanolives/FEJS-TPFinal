@@ -88,9 +88,11 @@ export function darkLight(){
 }
 }
 export function cartCounter() {
-   const buyList = JSON.parse(localStorage.getItem('cart')) || [];
-   const numCart = document.querySelector('.counterCarrito sub');
-   numCart.innerText = buyList.length;
+  const buyList = JSON.parse(localStorage.getItem("cart")) || [];
+  const numCart = document.querySelector(".counterCarrito sub");
+  numCart.innerText = buyList.reduce((acc, item) => {
+    return acc + item.qty;
+  }, 0);
 }
 export function firstWord(str){
     return str.split(/['-_\s]+/)[0].toLowerCase()
